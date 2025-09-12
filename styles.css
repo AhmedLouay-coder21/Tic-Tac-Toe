@@ -1,0 +1,21 @@
+#pvp , #pvc , #Buttons
+{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+#gameBoard
+{
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;        
+    height: 80vh; 
+    margin-top: 60px; 
+    margin-right: 320px;
+    margin: auto;
+    border: 10px solid red;
+    box-sizing: border-box;
+}
+#gameBoard > div {
+    box-sizing: border-box;
+}
