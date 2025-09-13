@@ -1,5 +1,5 @@
 // create game board (3x3)
-function creatGameBoard()
+function createGameBoard()
 {
         const gameBoardObject = {
         cells: [],   // this is 9 boxes (the actual board)
@@ -32,7 +32,7 @@ function chooseMode()
         // clear the buttons right after the user chooses the game mode
         clearButtons(pvp, pvc);
         //in case of pvp, draw the grid and keep exchanging turns between players
-        const cells = creatGameBoard();
+        const cells = createGameBoard();
         const gameMode = "pvp";
         playGame(gameMode, cells);
     });
@@ -41,7 +41,7 @@ function chooseMode()
         // clear the buttons right after the user chooses the game mode
         clearButtons(pvp, pvc);
         //in case of pvc, draw the grid and wait till the user to play and then choose a random but not taken box to play
-        const cells = creatGameBoard();
+        const cells = createGameBoard();
         const gameMode = "pvc";
         playGame(gameMode, cells);
     });
