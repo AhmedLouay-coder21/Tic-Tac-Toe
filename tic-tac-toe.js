@@ -43,7 +43,7 @@ function createGameBoard(player1, player2)
     playGame(gameBoardObject.cells, player1, player2);
 }
 //make the player choose if they want to play human to human or human to cpu
-function chooseMode()
+function startGame()
 {
     const startGame = document.getElementById("startGame");
     const player1Name = document.getElementById("Player1");
