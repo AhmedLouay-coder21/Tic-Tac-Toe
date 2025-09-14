@@ -127,7 +127,7 @@ function playGame(cells, player1, player2)
             else
             {
                 // draw the O and align it
-                event.target.style.backgroundImage = "url('https://cdn-icons-png.flaticon.com/512/3524/3524377.png')";
+                event.target.style.backgroundImage = "url('https://media.geeksforgeeks.org/wp-content/uploads/20201230114434/o-300x300.png')";
                 event.target.style.backgroundSize = "220px 230px";
                 fullCells[index] = "o";
             }
