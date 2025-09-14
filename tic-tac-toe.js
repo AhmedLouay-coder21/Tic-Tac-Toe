@@ -72,51 +72,47 @@ function playGame(gameMode, cells)
     [0,4,8],[2,4,6]          // diagonals
     ];
     const fullCells = Array(9).fill(null);
-    //if player vs player change turns
-    if(gameMode == "pvp")
-    {
-        //play until some one wins or the turns played are 9
-        cellNumber.forEach((cell, index) => {
-            cell.addEventListener("click", (event) => {
-                if(fullCells[index] !== null)
-                {
-                    alert("full cell");
+    //play until some one wins or the turns played are 9
+    cellNumber.forEach((cell, index) => {
+        cell.addEventListener("click", (event) => {
+            if(fullCells[index] !== null)
+            {
+                alert("full cell");
+                return;
+            }
+            // player 1 turn
+            if( turns % 2 == 0)
+            {
+                // draw the X and align it
+                event.target.style.backgroundImage = "url('https://cdn-icons-png.flaticon.com/512/5038/5038500.png')";
+                event.target.style.backgroundSize = "230px 230px";
+                fullCells[index] = "x";
+            }
+            //player 2 turn
+            else
+            {
+                // draw the O and align it
+                event.target.style.backgroundImage = "url('https://cdn-icons-png.flaticon.com/512/3524/3524377.png')";
+                event.target.style.backgroundSize = "220px 230px";
+                fullCells[index] = "o";
+            }
+            turns ++;
+            //check whether that any of the winning combinations exists and someone has won.
+            for(const [a,b,c] of winningCombos) {
+                if(fullCells[a] && fullCells[a] === fullCells[b] && fullCells[a] === fullCells[c]) {
+                    flag = 1;
+                    alert(`player ${fullCells[a] === "x" ? "1" : "2"} wins!`);
+                    startNewGame(fullCells,cellNumber);
                     return;
                 }
-                // player 1 turn
-                if( turns % 2 == 0)
-                {
-                    // draw the X and align it
-                    event.target.style.backgroundImage = "url('https://cdn-icons-png.flaticon.com/512/5038/5038500.png')";
-                    event.target.style.backgroundSize = "230px 230px";
-                    fullCells[index] = "x";
-                }
-                //player 2 turn
-                else
-                {
-                    // draw the O and align it
-                    event.target.style.backgroundImage = "url('https://cdn-icons-png.flaticon.com/512/3524/3524377.png')";
-                    event.target.style.backgroundSize = "220px 230px";
-                    fullCells[index] = "o";
-                }
-                turns ++;
-                //check whether that any of the winning combinations exists and someone has won.
-                for(const [a,b,c] of winningCombos) {
-                    if(fullCells[a] && fullCells[a] === fullCells[b] && fullCells[a] === fullCells[c]) {
-                        flag = 1;
-                        alert(`player ${fullCells[a] === "x" ? "1" : "2"} wins!`);
-                        startNewGame(fullCells,cellNumber);
-                        return;
-                    }
-                }
-                //all turns are over and no one won
-                if(turns == 9 && flag == 0)
-                {
-                    alert("Its a draw!");
-                }
-                });
+            }
+            //all turns are over and no one won
+            if(turns == 9 && flag == 0)
+            {
+                alert("Its a draw!");
+            }
             });
-    }
+        });
 }
 function startNewGame(array,object)
 {
