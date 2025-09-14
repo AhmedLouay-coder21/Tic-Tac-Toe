@@ -95,7 +95,6 @@ function startGame()
         startGame.style.display = "none";
     }
 }
-chooseMode();
 //this function handles how the game goes from telling the full cells to whether a player won or not
 function playGame(cells, player1, player2)
 {
@@ -185,3 +184,4 @@ function scoreCounter(ps)
     ps ++;
     return ps;
 }
+startGame();
