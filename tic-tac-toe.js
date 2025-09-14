@@ -43,14 +43,16 @@ function chooseMode()
             event.preventDefault();
             player1Name.style.display = "none";
             player2Name.style.display = "flex";
+            const player1 = document.getElementById("player1").value;
             submitPlayer2Name.addEventListener("click", function(event)
             {
                 event.preventDefault();
                 player2Name.style.display = "none";
+                const player2 = document.getElementById("player2").value;
                 // draw the game board
                 const cells = createGameBoard();
                 const gameMode = "pvp";
-                playGame(gameMode, cells);
+                playGame(gameMode, cells, player1, player2);
             });
         });
     });
@@ -61,7 +63,7 @@ function chooseMode()
 }
 chooseMode();
 //this function handles how the game goes from telling the full cells to whether a player won or not
-function playGame(gameMode, cells)
+function playGame(gameMode, cells, player1, player2)
 {
     const cellNumber = cells();
     let flag = 0;
@@ -101,7 +103,7 @@ function playGame(gameMode, cells)
             for(const [a,b,c] of winningCombos) {
                 if(fullCells[a] && fullCells[a] === fullCells[b] && fullCells[a] === fullCells[c]) {
                     flag = 1;
-                    alert(`player ${fullCells[a] === "x" ? "1" : "2"} wins!`);
+                    alert(`${fullCells[a] === "x" ? `${player1}` : `${player2}`} wins!`);
                     startNewGame(fullCells,cellNumber);
                     return;
                 }
