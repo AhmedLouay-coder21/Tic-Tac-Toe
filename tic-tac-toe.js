@@ -24,7 +24,7 @@ function createGameBoard(player1, player2)
     };
     const gameBoard = document.getElementById("gameBoard");
     gameBoard.innerHTML = "";
-    
+    //make a 3 * 3 gameBoard
     for(let i = 0; i < 3 * 3; i++)
     {
         box = document.createElement("div");
@@ -39,6 +39,7 @@ function createGameBoard(player1, player2)
         gameBoard.appendChild(gameBoardObject.cells[i]);
     }
     gameBoardObject.cells;
+    //start the game
     playGame(gameBoardObject.cells, player1, player2);
 }
 //make the player choose if they want to play human to human or human to cpu
@@ -159,15 +160,19 @@ function playGame(cells, player1, player2)
 }
 function startNewGame(player1,player2)
 {
+    // create , adjust and display new game button
     const newGameButton = document.createElement("button");
+
     newGameButton.textContent = "Play again!, retrieve your throne!";
     newGameButton.style.backgroundColor = "#3882f6";
     newGameButton.style.color = "white";
     newGameButton.style.border = "none";
     newGameButton.style.borderRadius = "2px";
     newGameButton.style.height = "30px";
+
     const form = document.getElementById("form");
     form.appendChild(newGameButton);
+    //on click clear the grid and start drawing it again using createGameBoard function. 
     newGameButton.addEventListener("click", (event) =>
     {
         event.preventDefault();
