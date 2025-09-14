@@ -145,7 +145,7 @@ function playGame(cells, player1, player2)
                     {
                         p2s.textContent = scoreCounter(p2s.textContent);
                     }
-                    startNewGame(fullCells,cellNumber,player1,player2);
+                    startNewGame(player1,player2);
                     return;
                 }
             }
@@ -157,7 +157,7 @@ function playGame(cells, player1, player2)
             });
         });
 }
-function startNewGame(array,object,player1,player2)
+function startNewGame(player1,player2)
 {
     const newGameButton = document.createElement("button");
     newGameButton.textContent = "Play again!, retrieve your throne!";
@@ -172,8 +172,6 @@ function startNewGame(array,object,player1,player2)
     {
         event.preventDefault();
         form.removeChild(newGameButton);
-        array = [];
-        object = {};
         createGameBoard(player1,player2);
     })
 }
