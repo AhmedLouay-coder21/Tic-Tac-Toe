@@ -36,3 +36,10 @@ body
     color: white;
     gap: 10px;
 }
+#playersScores
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: larger;
+}

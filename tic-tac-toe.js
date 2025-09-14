@@ -1,3 +1,21 @@
+//players initial scores
+let p1s = document.createElement("div");
+let p2s = document.createElement("div");
+let p1sName = document.createElement("div");
+let p2sName = document.createElement("div");
+
+p1sName.style.display = "none";
+p2sName.style.display = "none";
+p1sName.style.color = "white";
+p2sName.style.color = "white";
+
+p1s.style.display = "none";
+p2s.style.display = "none";
+p1s.style.color = "white";
+p2s.style.color = "white";
+
+p1s.textContent = 0;
+p2s.textContent = 0;
 // create game board (3x3)
 function createGameBoard(player1, player2)
 {
@@ -32,6 +50,9 @@ function chooseMode()
     const submitPlayer1Name = document.getElementById("submitPlayer1Name");
     const submitPlayer2Name = document.getElementById("submitPlayer2Name");
     
+    const playersScores = document.getElementById("playersScores");
+    playersScores.appendChild(p1sName);
+    playersScores.appendChild(p2sName);
     startGame.addEventListener("click", function(event)
     {
         // clear the buttons right after the user clicks startGame
@@ -50,6 +71,19 @@ function chooseMode()
                 event.preventDefault();
                 player2Name.style.display = "none";
                 const player2 = document.getElementById("player2").value;
+
+                p1sName.textContent = `${player1} score : `;
+                p2sName.textContent = `${player2} score : `;
+                
+                p1sName.style.display = "flex";
+                p2sName.style.display = "flex";
+
+                p1sName.appendChild(p1s);
+                p2sName.appendChild(p2s);
+
+                p1s.style.display = "flex";
+                p2s.style.display = "flex";
+
                 // draw the game board
                 createGameBoard(player1, player2);
             });
@@ -103,7 +137,15 @@ function playGame(cells, player1, player2)
                 if(fullCells[a] && fullCells[a] === fullCells[b] && fullCells[a] === fullCells[c]) {
                     flag = 1;
                     alert(`${fullCells[a] === "x" ? `${player1}` : `${player2}`} wins!`);
-                    startNewGame(fullCells,cellNumber);
+                    if(fullCells[a] == "x")
+                    {
+                        p1s.textContent = scoreCounter(p1s.textContent);
+                    }
+                    else
+                    {
+                        p2s.textContent = scoreCounter(p2s.textContent);
+                    }
+                    startNewGame(fullCells,cellNumber,player1,player2);
                     return;
                 }
             }
@@ -115,9 +157,15 @@ function playGame(cells, player1, player2)
             });
         });
 }
-function startNewGame(array,object)
+function startNewGame(array,object,player1,player2)
 {
     const newGameButton = document.createElement("button");
+    newGameButton.textContent = "Play again!, retrieve your throne!";
+    newGameButton.style.backgroundColor = "#3882f6";
+    newGameButton.style.color = "white";
+    newGameButton.style.border = "none";
+    newGameButton.style.borderRadius = "2px";
+    newGameButton.style.height = "30px";
     const form = document.getElementById("form");
     form.appendChild(newGameButton);
     newGameButton.addEventListener("click", (event) =>
@@ -126,6 +174,11 @@ function startNewGame(array,object)
         form.removeChild(newGameButton);
         array = [];
         object = {};
-        createGameBoard();
+        createGameBoard(player1,player2);
     })
+}
+function scoreCounter(ps)
+{
+    ps ++;
+    return ps;
 }
