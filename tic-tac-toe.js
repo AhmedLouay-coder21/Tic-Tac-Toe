@@ -25,30 +25,38 @@ function createGameBoard()
 //make the player choose if they want to play human to human or human to cpu
 function chooseMode()
 {
-    const pvc = document.getElementById("pvc");
-    const pvp = document.getElementById("pvp");
-    pvp.addEventListener("click", function(event)
+    const startGame = document.getElementById("startGame");
+    const player1Name = document.getElementById("Player1");
+    const player2Name = document.getElementById("Player2");
+    const submitPlayer1Name = document.getElementById("submitPlayer1Name");
+    const submitPlayer2Name = document.getElementById("submitPlayer2Name");
+    
+    startGame.addEventListener("click", function(event)
     {
-        // clear the buttons right after the user chooses the game mode
-        clearButtons(pvp, pvc);
-        //in case of pvp, draw the grid and keep exchanging turns between players
-        const cells = createGameBoard();
-        const gameMode = "pvp";
-        playGame(gameMode, cells);
+        // clear the buttons right after the user clicks startGame
+        clearButtons(startGame);
+        //display the enter player 1 name field
+        player1Name.style.display = "flex";
+        //wait for the player 1 to enter his name before make enter player 2 name field appears
+        submitPlayer1Name.addEventListener("click", function(event)
+        {
+            event.preventDefault();
+            player1Name.style.display = "none";
+            player2Name.style.display = "flex";
+            submitPlayer2Name.addEventListener("click", function(event)
+            {
+                event.preventDefault();
+                player2Name.style.display = "none";
+                // draw the game board
+                const cells = createGameBoard();
+                const gameMode = "pvp";
+                playGame(gameMode, cells);
+            });
+        });
     });
-    pvc.addEventListener("click", function(event) 
+    function clearButtons(startGame)
     {
-        // clear the buttons right after the user chooses the game mode
-        clearButtons(pvp, pvc);
-        //in case of pvc, draw the grid and wait till the user to play and then choose a random but not taken box to play
-        const cells = createGameBoard();
-        const gameMode = "pvc";
-        playGame(gameMode, cells);
-    });
-    function clearButtons(pvp, pvc)
-    {
-        pvp.style.display = "none";
-        pvc.style.display = "none";
+        startGame.style.display = "none";
     }
 }
 chooseMode();
@@ -97,6 +105,7 @@ function playGame(gameMode, cells)
                     if(fullCells[a] && fullCells[a] === fullCells[b] && fullCells[a] === fullCells[c]) {
                         flag = 1;
                         alert(`player ${fullCells[a] === "x" ? "1" : "2"} wins!`);
+                        startNewGame(fullCells,cellNumber);
                         return;
                     }
                 }
@@ -108,4 +117,17 @@ function playGame(gameMode, cells)
                 });
             });
     }
+}
+function startNewGame(array,object)
+{
+    const newGameButton = document.createElement("button");
+    const form = document.getElementById("form");
+    form.appendChild(newGameButton);
+    newGameButton.addEventListener("click", (event) =>
+    {
+        array = [];
+        object = {};
+        playGame("pvp",object);
+        createGameBoard();
+    })
 }

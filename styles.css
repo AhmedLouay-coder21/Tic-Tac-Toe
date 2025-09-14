@@ -19,3 +19,11 @@
 #gameBoard > div {
     box-sizing: border-box;
 }
+#Player1
+{
+    display: none;
+}
+#Player2
+{
+    display: none;
+}

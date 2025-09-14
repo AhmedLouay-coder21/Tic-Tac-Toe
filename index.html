@@ -8,18 +8,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-        <button id="pvc"> Player VS CPU</button>
-        <button id="pvp"> Player VS Player</button>
+        <button id="startGame"> Start Game</button>
     <form id ="form">
-
+        <div id="Player1">
         <label for="player1">Enter player 1 name</label><br>
         <input type="text" id="player1" name="player1"><br>
-        <input type="submit" value="Submit">
+        <input type="submit" id = "submitPlayer1Name" value="Submit">
+        </div>
 
+        <div id="Player2">
         <label for="player2">Enter player 2 name</label><br>
         <input type="text" id="player2" name="player2">
-        <input type="submit" value="Submit2">
-
+        <input type="submit" id = "submitPlayer2Name" value="Submit">
+        </div>
     </form>
     <div id = "gameBoard">
         
