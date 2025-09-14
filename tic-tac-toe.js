@@ -1,10 +1,12 @@
 // create game board (3x3)
-function createGameBoard()
+function createGameBoard(player1, player2)
 {
         const gameBoardObject = {
         cells: [],   // this is 9 boxes (the actual board)
     };
     const gameBoard = document.getElementById("gameBoard");
+    gameBoard.innerHTML = "";
+    
     for(let i = 0; i < 3 * 3; i++)
     {
         box = document.createElement("div");
@@ -13,14 +15,13 @@ function createGameBoard()
         box.style.height = `calc(100% / ${3})`; 
 
         box.style.border = "1px solid black";
+        box.style.backgroundColor = "white";
 
         gameBoardObject.cells.push(box);
         gameBoard.appendChild(gameBoardObject.cells[i]);
     }
-    return function()
-    {
-        return gameBoardObject.cells;
-    }
+    gameBoardObject.cells;
+    playGame(gameBoardObject.cells, player1, player2);
 }
 //make the player choose if they want to play human to human or human to cpu
 function chooseMode()
@@ -50,9 +51,7 @@ function chooseMode()
                 player2Name.style.display = "none";
                 const player2 = document.getElementById("player2").value;
                 // draw the game board
-                const cells = createGameBoard();
-                const gameMode = "pvp";
-                playGame(gameMode, cells, player1, player2);
+                createGameBoard(player1, player2);
             });
         });
     });
@@ -63,9 +62,9 @@ function chooseMode()
 }
 chooseMode();
 //this function handles how the game goes from telling the full cells to whether a player won or not
-function playGame(gameMode, cells, player1, player2)
+function playGame(cells, player1, player2)
 {
-    const cellNumber = cells();
+    const cellNumber = cells;
     let flag = 0;
     let turns = 0;
     const winningCombos = [
@@ -123,9 +122,10 @@ function startNewGame(array,object)
     form.appendChild(newGameButton);
     newGameButton.addEventListener("click", (event) =>
     {
+        event.preventDefault();
+        form.removeChild(newGameButton);
         array = [];
         object = {};
-        playGame("pvp",object);
         createGameBoard();
     })
 }

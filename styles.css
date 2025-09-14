@@ -1,3 +1,17 @@
+body
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 20px;
+    width: 99%;
+    height: 100%;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/004/532/221/large_2x/tic-tac-toe-seamless-background-on-dark-blue-illustration-vector.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
 #pvp , #pvc , #Buttons
 {
     display: flex;
@@ -10,20 +24,15 @@
     flex-wrap: wrap;
     width: 700px;        
     height: 80vh; 
-    margin-top: 60px; 
-    margin-right: 320px;
-    margin: auto;
     border: 10px solid red;
     box-sizing: border-box;
 }
 #gameBoard > div {
     box-sizing: border-box;
 }
-#Player1
+#Player1 , #Player2
 {
     display: none;
-}
-#Player2
-{
-    display: none;
+    color: white;
+    gap: 10px;
 }
