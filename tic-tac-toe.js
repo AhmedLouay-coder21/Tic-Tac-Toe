@@ -107,9 +107,15 @@ function playGame(cells, player1, player2)
     [0,4,8],[2,4,6]          // diagonals
     ];
     const fullCells = Array(9).fill(null);
+    let gameActive = true;
     //play until some one wins or the turns played are 9
     cellNumber.forEach((cell, index) => {
-        cell.addEventListener("click", (event) => {
+        cell.addEventListener("click", function handleClick (event) {
+            if (!gameActive) 
+            {
+                alert("The game is over, click play again to start a new game!");
+                return
+            }
             if(fullCells[index] !== null)
             {
                 alert("full cell");
@@ -145,6 +151,7 @@ function playGame(cells, player1, player2)
                     {
                         p2s.textContent = scoreCounter(p2s.textContent);
                     }
+                    gameActive = false;
                     startNewGame(player1,player2);
                     return;
                 }
@@ -162,21 +169,22 @@ function startNewGame(player1,player2)
 {
     // create , adjust and display new game button
     const newGameButton = document.createElement("button");
-
-    newGameButton.textContent = "Play again!, retrieve your throne!";
+    
+    newGameButton.textContent = "Play again, retrieve your throne!";
     newGameButton.style.backgroundColor = "#3882f6";
     newGameButton.style.color = "white";
     newGameButton.style.border = "none";
     newGameButton.style.borderRadius = "2px";
     newGameButton.style.height = "30px";
 
-    const form = document.getElementById("form");
-    form.appendChild(newGameButton);
+    const NewGameContainer = document.getElementById("startNewGameButton");
+    NewGameContainer.innerHTML = "";
+    NewGameContainer.appendChild(newGameButton);
     //on click clear the grid and start drawing it again using createGameBoard function. 
     newGameButton.addEventListener("click", (event) =>
     {
         event.preventDefault();
-        form.removeChild(newGameButton);
+        NewGameContainer.removeChild(newGameButton);
         createGameBoard(player1,player2);
     })
 }
