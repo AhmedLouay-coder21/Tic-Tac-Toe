@@ -114,7 +114,7 @@ function playGame(cells, player1, player2)
             if (!gameActive) 
             {
                 alert("The game is over, click play again to start a new game!");
-                return
+                return;
             }
             if(fullCells[index] !== null)
             {
@@ -126,7 +126,10 @@ function playGame(cells, player1, player2)
             {
                 // draw the X and align it
                 event.target.style.backgroundImage = "url('https://cdn-icons-png.flaticon.com/512/5038/5038500.png')";
-                event.target.style.backgroundSize = "230px 230px";
+                event.target.style.backgroundSize = "80% 80%";
+                event.target.style.backgroundPosition = "center";
+                event.target.style.backgroundRepeat = "no-repeat";
+
                 fullCells[index] = "x";
             }
             //player 2 turn
@@ -134,7 +137,10 @@ function playGame(cells, player1, player2)
             {
                 // draw the O and align it
                 event.target.style.backgroundImage = "url('https://media.geeksforgeeks.org/wp-content/uploads/20201230114434/o-300x300.png')";
-                event.target.style.backgroundSize = "220px 230px";
+                event.target.style.backgroundSize = "80% 80%";
+                event.target.style.backgroundPosition = "center";
+                event.target.style.backgroundRepeat = "no-repeat";
+
                 fullCells[index] = "o";
             }
             turns ++;
@@ -171,6 +177,7 @@ function startNewGame(player1,player2)
     const newGameButton = document.createElement("button");
     
     newGameButton.textContent = "Play again, retrieve your throne!";
+    newGameButton.style.marginTop = "5%";
     newGameButton.style.backgroundColor = "#3882f6";
     newGameButton.style.color = "white";
     newGameButton.style.border = "none";
