@@ -153,6 +153,7 @@ function playGame(cells, player1, player2)
             if(turns == 9 && flag == 0)
             {
                 alert("Its a draw!");
+                startNewGame(player1,player2);
             }
             });
         });
